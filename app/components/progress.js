@@ -5,7 +5,7 @@ let Progress = React.createClass({
   render() {
     return (
       <div id="component-progress">
-        { this.props.progress }s
+        <div className="progress" style={{width: `${this.props.progress}%`}}></div> 
       </div>
     )
   }
