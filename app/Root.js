@@ -6,23 +6,33 @@ import Progress from './components/progress'
 let Root = React.createClass({
 	getInitialState() {
 		return {		
-			count: 0
-		}
-	},
-	counterHandler() {
-		console.log('hello');
-		this.setState({
-			count: this.state.count + 1
-		});
-	},
-    render() {
-        return (
-            <div>
-              <Header/>
-              <Progress progress="1"/>
-            </div>
-        );
+      progress: '-'
     }
+  },
+  componentDidMount() {
+    $('#player').jPlayer({
+      ready: function() {
+        $(this).jPlayer('setMedia', {
+          mp3: 'http://mp3.flash127.com/music/11676.mp3'
+        }).jPlayer('play')
+      },
+      supplied: 'mp3',
+      wmode: 'window'
+    })
+    $('#player').bind($.jPlayer.event.timeupdate, (e) => {
+      this.setState({
+        progress: Math.round(e.jPlayer.status.currentTime)
+      }) 
+    })
+  },
+  render() {
+    return (
+        <div>
+          <Header/>
+          <Progress progress={this.state.progress}/>
+        </div>
+    );
+  }
 });
 
 export default Root;
