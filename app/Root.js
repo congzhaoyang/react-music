@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from './components/button';
+import Header from './components/header'
+import Progress from './components/progress'
 
 let Root = React.createClass({
 	getInitialState() {
@@ -16,8 +18,8 @@ let Root = React.createClass({
     render() {
         return (
             <div>
-                <p>hello world，welcome to the React lesson~</p>
-                <Button></Button>
+              <Header/>
+              <Progress progress="1"/>
             </div>
         );
     }
