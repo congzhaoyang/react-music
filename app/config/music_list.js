@@ -1,4 +1,4 @@
-export const MusicList = [
+export const MUSIC_LIST = [
 	{
 		id: 1,
 		title: '天使中的魔鬼',
