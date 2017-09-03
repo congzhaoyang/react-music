@@ -1,5 +1,6 @@
 import React from 'react'
 import Progress from '../components/progress'
+require ('./player.scss')
 
 let duration = null
 let Player = React.createClass({
@@ -24,10 +25,13 @@ let Player = React.createClass({
   },
   render() {
     return (
-      <div>
+      <div id="player-page">
         <Progress progress={this.state.progress}
         onProgressChange = {this.progressChangeHandler}
         />
+        <h2>{this.props.currentMusicItem.title}</h2>
+        <h3>{this.props.currentMusicItem.artist}</h3>
+        <img src={this.props.currentMusicItem.cover}/>
       </div>
     )
   }
