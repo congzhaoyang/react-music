@@ -27,6 +27,8 @@ let App = React.createClass({
       supplied: 'mp3',
       wmode: 'window'
     })
+    this.playMusic(this.state.currentMusicItem)
+    //只要有事件绑定，就一定要解绑
     Pubsub.subscribe('PLAY_MUSIC', (msg, musicItem) => {
       this.playMusic(musicItem)
     })

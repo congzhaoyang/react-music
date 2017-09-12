@@ -9,7 +9,7 @@ let MusicListItem = React.createClass({
   render() {
     let musicItem = this.props.musicItem
     return (
-      <li onClick={this.playMusic.bind(this, musicItem)}><p>{ musicItem.title } - { musicItem.artist }</p></li> 
+      <li onClick={this.playMusic.bind(this, musicItem)}><p>{ musicItem.title } - { musicItem.artist }</p></li> //bind进行传参，绑定作用于this，传参musicItem
     )
   }
 })
