@@ -4,10 +4,6 @@ import Pubsub from 'pubsub.js'
 let PubSub = require('pubsub.js');
 
 let ListItem = React.createClass({
-	deleteHandler(item, event) {
-		event.stopPropagation();
-		PubSub.publish('DEL_MUSIC', item);
-	},
 	playMusic(item, e) {
 		PubSub.publish('PLAY_MUSIC', item);
 	},

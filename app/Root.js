@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/header'
 import PlayerPage from './page/player'
 import ListPage from './page/list'
-import MusicList from './page/musiclist'
+import MusicList from './components/musiclist'
 import { MUSIC_LIST } from './config/config'
 import { Router, IndexRoute, Link, Route, hashHistory} from 'react-router'
 import Pubsub from 'pubsub.js'
@@ -15,6 +15,7 @@ let App = React.createClass({
     }
   },
   playMusic(item) {
+    //if(item === undefined) debugger
     $('#player').jPlayer('setMedia', {
       mp3: item.file
     }).jPlayer('play')
