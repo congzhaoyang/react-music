@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from './components/header'
-import Player from './page/player'
+import PlayerPage from './page/player'
+import ListPage from './page/list'
 import MusicList from './page/musiclist'
-import { MUSIC_LIST } from './config/music_list'
+import { MUSIC_LIST } from './config/config'
 import { Router, IndexRoute, Link, Route, hashHistory} from 'react-router'
 import Pubsub from 'pubsub.js'
 
@@ -81,8 +82,8 @@ let Root = React.createClass({
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Player}></IndexRoute>
-          <Route path="/list" component={MusicList}></Route>
+          <IndexRoute component={PlayerPage}></IndexRoute>
+          <Route path="/list" component={ListPage}></Route>
         </Route>
       </Router>
     )
