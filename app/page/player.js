@@ -10,6 +10,7 @@ let Player = React.createClass({
 		return {		
       progress: '-',
       isPlay: true,
+      leftTime: ''
     }
   },
   playNext() {
@@ -22,7 +23,8 @@ let Player = React.createClass({
     $('#player').bind($.jPlayer.event.timeupdate, (e) => {
       duration = e.jPlayer.status.duration
       this.setState({
-        progress: e.jPlayer.status.currentPercentAbsolute
+        progress: e.jPlayer.status.currentPercentAbsolute,
+        leftTime: this.formatTime(duration * (1 - e.jPlayer.status.currentPercentAbsolute / 100))
       }) 
     })
   },
@@ -42,6 +44,12 @@ let Player = React.createClass({
       isPlay: !this.state.isPlay
     })
   },
+  formatTime(time) {
+    time = Math.floor(time)
+    var minute = Math.floor(time / 60)
+    var seconds = Math.floor(time % 60)
+    return `${(minute < 10 ? '0' + minute : minute)}:${(seconds < 10 ? '0' + seconds : seconds)}` //ES6模板字符串 + 三元运算符
+  },
   render() {
     return (
       <div id="player-page">
@@ -51,6 +59,7 @@ let Player = React.createClass({
         <h2>{this.props.currentMusicItem.title}</h2>
         <h3>{this.props.currentMusicItem.artist}</h3>
         <img src={this.props.currentMusicItem.cover}/>
+        <p>{this.state.leftTime}</p>
         <button onClick={this.play}>{`${this.state.isPlay ? '播放':'暂停'}`}</button>
         <button onClick={this.playNext}>下一曲</button>
         <button onClick={this.playPrev}>上一曲</button>

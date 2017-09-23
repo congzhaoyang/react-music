@@ -56,6 +56,7 @@ let App = React.createClass({
     })
   },
   componentWillMount() {
+    //事件解绑总是报错
     /*
     Pubsub.unsubscribe('PLAY_MUSIC')
     PubSub.unsubscribe('PLAY_NEXT');
