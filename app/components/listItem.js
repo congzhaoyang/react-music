@@ -1,7 +1,7 @@
 import React from 'react';
 require('./listitem.scss');
-//import Pubsub from 'pubsub.js'
-let PubSub = require('pubsub-js');
+import Pubsub from 'pubsub.js'
+let PubSub = require('pubsub.js');
 
 let ListItem = React.createClass({
 	deleteHandler(item, event) {

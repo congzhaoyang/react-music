@@ -14,12 +14,12 @@ let App = React.createClass({
       musicList: MUSIC_LIST
     }
   },
-  playMusic(musicItem) {
+  playMusic(item) {
     $('#player').jPlayer('setMedia', {
-      mp3: musicItem.file
+      mp3: item.file
     }).jPlayer('play')
     this.setState({
-      currentMusicItem: musicItem
+      currentMusicItem: item
     })
   },
 	playNext(type = 'next') {
