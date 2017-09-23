@@ -17,11 +17,27 @@ let App = React.createClass({
     $('#player').jPlayer('setMedia', {
       mp3: musicItem.file
     }).jPlayer('play')
-
     this.setState({
       currentMusicItem: musicItem
     })
   },
+	playNext(type = 'next') {
+		let index = this.findMusicIndex(this.state.currentMusitItem);
+		if (type === 'next') {		
+			index = (index + 1) % this.state.musicList.length;
+		} else {
+			index = (index + this.state.musicList.length - 1) % this.state.musicList.length;
+		}
+		let musicItem = this.state.musicList[index];
+		this.setState({
+			currentMusitItem: musicItem
+		});
+		this.playMusic(musicItem);
+  },
+  findMusicIndex(music) {
+		let index = this.state.musicList.indexOf(music);
+		return Math.max(0, index);
+	},
   componentDidMount() {
     $('#player').jPlayer({
       supplied: 'mp3',
@@ -32,9 +48,19 @@ let App = React.createClass({
     Pubsub.subscribe('PLAY_MUSIC', (msg, musicItem) => {
       this.playMusic(musicItem)
     })
+    Pubsub.subscribe('PLAY_PREV', (msg, musicItem) => {
+      this.playNext('PREV')
+    })
+    Pubsub.subscribe('PLAY_NEXT', (msg, musicItem) => {
+      this.playNext()
+    })
   },
   componentWillMount() {
-    //Pubsub.unsubscribe('PLAY_MUSIC')
+    /*
+    Pubsub.unsubscribe('PLAY_MUSIC')
+    PubSub.unsubscribe('PLAY_NEXT');
+    PubSub.unsubscribe('PLAY_PREV');
+    */
   },
   progressChangeHandler(progress) {
     $('#player').jPlayer('play', duration * progress)
